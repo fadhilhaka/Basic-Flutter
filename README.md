@@ -21,6 +21,7 @@
 | Course | Description |
 |--------|-------------|
 | [Introduction](https://github.com/fadhilhaka/Basic-Flutter/tree/main/introduction) | Intro to Flutter |
+| [Fundamental](https://github.com/fadhilhaka/Basic-Flutter/tree/main/fundamental) | Flutter Fundamental |
 
 ## Intention
 
