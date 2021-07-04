@@ -212,3 +212,82 @@ setState(() {
   _textSize = 32.0; // ukuran text diubah menjadi 32
 });
 ~~~
+
+### [Scaffold](https://api.flutter.dev/flutter/material/Scaffold-class.html)
+
+Scaffold merupakan sebuah widget yang digunakan untuk membuat tampilan dasar material design pada aplikasi Flutter, yang dapat disebut juga dasar sebuah halaman pada aplikasi Flutter.
+
+![](https://d17ivq9b7rppb3.cloudfront.net/original/academy/2020061215241361da7eebd046c6406eea62a5e45b08bc.png)
+
+Scaffold di atas memiliki 3 bagian yaitu **AppBar**, **Body**, dan **FloatingActionButton**.
+
+Pada gambar di atas kotak berwarna merah merupakan **AppBar**; kotak berwarna hijau merupakan **body**; dan kotak berwarna biru merupakan **FloatingActionButton**.
+
+~~~
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+~~~
+
+Pada kode di atas kita membuat sebuah **StatelessWidget** bernama **FirstScreen**, yang merupakan widget tampilan kita. Kemudian di dalam method build kita panggil **Scaffold**.
+
+Untuk memakainya kita perlu memanggil **FirstScreen** pada Widget **MyApp**.
+
+~~~
+import 'package:flutter/material.dart';
+ 
+void main() => runApp(MyApp());
+ 
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: FirstScreen(),// Panggil FirstScreen di sini
+ 
+    );
+  }
+}
+~~~
+
+**AppBar**
+
+**AppBar** merupakan Header (bagian paling atas) aplikasi atau biasa dikenal dengan toolbar. Pada **AppBar** umumnya terdapat judul dan **ActionButton**.
+
+~~~
+Scaffold(
+  appBar: AppBar(
+    title: Text('First Screen'),
+  ),
+);
+~~~
+
+Pada kode di atas kita menambahkan parameter **appBar** pada Scaffold dan menambahkan **title** pada **AppBar** tersebut.
+
+Title di sini tidak hanya spesifik Text saja, melainkan juga dapat diisi dengan widget lainnya seperti TextField untuk kolom pencarian atau yang lainnya.
+
+**Body**
+
+~~~
+body: Center(
+  child: Text('Hello I\'m  Body'),
+),
+~~~
+
+**FloatingActionButton**
+
+**FloatingActionButton** merupakan bagian dari Scaffold yang digunakan untuk menampilkan sebuah tombol aksi yang posisinya floating (melayang dan posisinya tetap).
+
+~~~
+floatingActionButton: FloatingActionButton(
+  child: Icon(Icons.add),
+),
+~~~
+
