@@ -291,3 +291,702 @@ floatingActionButton: FloatingActionButton(
 ),
 ~~~
 
+### [Container](https://api.flutter.dev/flutter/widgets/Container-class.html)
+
+Container adalah widget yang digunakan untuk melakukan styling, membuat sebuah shape (bentuk), dan layout pada widget child-nya.
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40)),
+  color: Colors.blue,
+)
+~~~
+
+Pada kode di atas kita membuat sebuah **Text** "Hi" yang dibungkus oleh widget **Container** dan kita beri parameter **color** dengan nilai **Colors.blue**.
+
+**Width & Height**
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40),),
+  color: Colors.blue,
+  width: 200,
+  height: 100,
+)
+~~~
+
+**Padding & Margin**
+
+Padding merupakan jarak antara konten (child) dengan Container, sedangkan margin merupakan jarak antara Container dengan bagian luar container.
+
+~~~
+Container(
+ child: Text('Hi', style: TextStyle(fontSize: 40),),
+ color: Colors.blue,
+ padding: EdgeInsets.all(10),
+ margin: EdgeInsets.all(10),
+)
+~~~
+
+### Dekorasi Container
+
+Decoration merupakan bagian dari Container untuk styling. Untuk menggunakan decoration cukup menambahkan parameter **decoration** pada **Container** lalu beri nilai **BoxDecoration**.
+
+**Color**
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40),),
+  decoration: BoxDecoration(
+    color: Colors.red,
+  ),
+)
+~~~
+
+**Shape**
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40),),
+  decoration: BoxDecoration(
+    color: Colors.red,
+    shape: BoxShape.circle,
+  ),
+)
+~~~
+
+**Shadow**
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40)),
+  decoration: BoxDecoration(
+    color: Colors.red,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black,
+        offset: Offset(3, 6),
+        blurRadius: 10,
+      ),
+    ],
+  ),
+)
+~~~
+
+Parameter boxShadow merupakan sebuah **Array**. Di dalamnya terdapat **BoxShadow** yang artinya pada **Container** kita dapat memberikan banyak bayangan atau **shadow**.
+
+**Border**
+
+Border merupakan batas garis dengan content (child).
+
+~~~
+Container(
+  child: Text('Hi', style: TextStyle(fontSize: 40),),
+  decoration: BoxDecoration(
+    color: Colors.red,
+    border: Border.all(color: Colors.green, width: 3),
+  ),
+)
+~~~
+
+Apabila Anda ingin membuat border yang tidak berujung lancip cukup tambahkan parameter borderRadius Pada BoxDecoration.
+
+~~~
+borderRadius: BorderRadius.circular(10),
+~~~
+
+### [Padding](https://api.flutter.dev/flutter/widgets/Padding-class.html)
+
+Widget Padding merupakan sebuah widget yang khusus untuk memberikan padding pada suatu widget.
+
+~~~
+Padding(
+  padding: EdgeInsets.all(30),
+  child: Text('Ini Padding')
+)
+~~~
+
+Pada kode di atas widget Padding harus memiliki child. Child di sini merupakan sebuah widget yang nantinya akan diberi padding. Parameter padding ditambahkan untuk menentukan besaran padding yang diinginkan.
+
+### Center
+
+Widget Center merupakan sebuah widget yang digunakan untuk membuat suatu widget berada pada posisi tengah.
+
+~~~
+Center(
+  child: Text('Text berada di tengah'),
+)
+~~~
+
+### Row & Column
+
+[**Row**](https://api.flutter.dev/flutter/widgets/Row-class.html)
+
+Widget Row merupakan suatu widget yang digunakan untuk membuat widget-widget tersusun berjajar secara horizontal.
+
+~~~
+Row(
+  children: <Widget>[
+    //di sini berisi widget-widget
+  ],
+)
+~~~
+
+Untuk membuat widget-widget berjajar secara horizontal kita harus memasukkan widget-widget tersebut ke dalam parameter children.
+
+Parameter children berisi kumpulan atau list dari widget karena kita dapat menyusun beberapa widget sekaligus di dalamnya.
+
+~~~
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: <Widget> [
+    IconButton(icon: Icon(Icons.share)),
+    IconButton(icon: Icon(Icons.thumb_up)),
+    IconButton(icon: Icon(Icons.thumb_down)),
+  ],
+)
+~~~
+
+![](https://www.dicoding.com/academies/159/tutorials/6498?from=8584#)
+
+Kita menambahkan **mainAxisAlignment** yang merupakan parameter alignment pada **Row**.
+
+Parameter **mainAxisAlignment** yang berfungsi untuk mengatur alignment **vertikal** dari **Row** (alignment utama). Selain itu **Row** juga memiliki parameter **crossAxisAlignment** yang berfungsi untuk mengatur alignment secara **horizontal**. 
+
+Kedua parameter ini juga berlaku sebaliknya untuk widget **Column**.
+
+Berikut ini adalah contoh penerapan mainAxisAlignment pada Row:
+
+![](https://d17ivq9b7rppb3.cloudfront.net/original/academy/2021042512000412e4c53a9d35daed279e1163d70a284b.jpeg)
+
+[**Column**](https://api.flutter.dev/flutter/widgets/Column-class.html)
+
+Column merupakan suatu widget yang digunakan untuk membuat widget-widget tersusun berjajar secara vertikal.
+
+~~~
+Column(
+  children: <Widget>[
+    //di sini berisi widget-widget
+  ]
+)
+~~~
+
+~~~
+Column(
+  children: <Widget>[
+    Text(
+      'Sebuah Judul',
+      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    ),
+    Text('Lorem ipsum dolor sit amet'),
+  ],
+)
+~~~
+
+[Flutter Layout](https://flutter.dev/docs/development/ui/layout)
+
+### [Button](https://flutter.dev/docs/development/ui/widgets/material#Buttons)
+
+Widget yang dapat menerima trigger sentuhan atau dapat melakukan suatu fungsi ketika disentuh.
+
+[**ElevatedButton**](https://api.flutter.dev/flutter/material/ElevatedButton-class.html)
+
+~~~
+ElevatedButton(
+  onPressed: (){
+    // Aksi ketika button diklik
+  },
+  child: Text("Tombol"),
+);
+~~~
+
+Pada kode di atas **ElevatedButton** memiliki 2 parameter yaitu **onPressed** dan **child**. Parameter **onPressed** merupakan sebuah function event ketika tombol ditekan.
+
+Terdapat ada event lain seperti **onLongPress** dan **onHighlightChanged**.
+
+[**TextButton**](https://api.flutter.dev/flutter/material/TextButton-class.html)
+
+TextButton merupakan widget button yang memiliki tampilan yang polos selayaknya Text.
+
+TextButton umumnya digunakan pada toolbars, dialog, atau bersama komponen button lain.
+
+~~~
+TextButton(
+  onPressed: () {
+    // Aksi ketika button diklik
+  },
+  child: Text('Text Button'),
+)
+~~~
+
+[**OutlinedButton**](https://api.flutter.dev/flutter/material/OutlinedButton-class.html)
+
+OutlinedButton umumnya digunakan untuk tombol atau aksi yang penting, tetapi bukan aksi utama dalam aplikasi.
+
+~~~
+OutlinedButton(
+  onPressed: () {
+    // Aksi ketika button diklik
+  },
+  child: Text('Outlined Button'),
+)
+~~~
+
+[**IconButton**](https://api.flutter.dev/flutter/material/IconButton-class.html)
+
+IconButton merupakan widget button dengan icon.
+
+~~~
+IconButton(
+  icon: Icon(Icons.volume_up),
+  tooltip: 'Increase volume by 10',
+  onPressed: () {
+    // Aksi ketika button diklik
+  },
+)
+~~~
+
+IconButton tidak menggunakan child untuk isi (content) melainkan menggunakan parameter icon dan tooltip (penunjuk) untuk memberikan hint pada tombol.
+
+[**DropdownButton**](https://api.flutter.dev/flutter/material/DropdownButton-class.html)
+
+DropdownButton merupakan tombol yang saat diklik, akan muncul pop-up daftar beberapa item yang dapat kita pilih salah satu.
+
+~~~
+class FirstScreen extends StatefulWidget {
+  @override
+  _FirstScreenState createState() => _FirstScreenState();
+}
+ 
+class _FirstScreenState extends State<FirstScreen> {
+  String language;
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: DropdownButton<String>(
+        items: <DropdownMenuItem<String>>[
+          DropdownMenuItem<String>(
+            value: 'Dart',
+            child: Text('Dart'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'Kotlin',
+            child: Text('Kotlin'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'Swift',
+            child: Text('Swift'),
+          ),
+        ],
+        value: language,
+        hint: Text('Select Language'),
+        onChanged: (String value) {
+          setState(() {
+            language = value;
+          });
+        },
+      ),
+    );
+  }
+}
+~~~
+
+Pada contoh tersebut DropdownButton tidak menggunakan child maupun children, akan tetapi menggunakan items di mana berisi list dari widget DropdownMenuItem. Pada widget DropdownMenuItem terdapat child untuk tiap itemnya dan value yang ada pada DropdownMenuItem adalah nilai dari tiap itemnya. 
+
+Nantinya akan dibutuhkan parameter onChanged ketika ada perubahan atau ketika memilih salah satu dari item tersebut dan mengubah nilai language atau value dari DropdownButton tersebut. Sedangkan hint berfungsi ketika nilai value dari DropdownButton null atau kosong.
+
+## [Input Widget](https://flutter.dev/docs/development/ui/widgets/material#Input%20and%20selections)
+
+Input pengguna umumnya berkaitan dengan state yang dapat sering berubah, karena itu umumnya input widget akan ditempatkan di dalam StatefulWidget.
+
+### [TextField](https://api.flutter.dev/flutter/material/TextField-class.html)
+
+TextField merupakan sebuah widget yang digunakan untuk menerima input berupa teks yang berasal dari keyboard.
+
+Parameter **onChanged** berisi sebuah fungsi yang akan dipanggil setiap terjadi perubahan inputan pada **TextField**. Pada fungsi ini, kita dapat mengubah nilai variabel state dengan memanggil fungsi **setState()**.
+
+Jika hanya ingin mengambil perubahan ketika seluruh input sudah selesai di-submit, dapat menggunakan parameter **onSubmitted**.
+
+Cara lain yang bisa kita gunakan adalah dengan **TextEditingController**. Dengan **controller**, kita cukup membuat variabel **TextEditingController** lalu menambahkannya ke widget **TextField**.
+
+~~~
+class _FirstScreenState extends State<FirstScreen> {
+  String _name = '';
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Write your name here...',
+                labelText: 'Your Name',
+              ),
+              onChanged: (String value) {
+                setState(() {
+                  _name = value;
+                });
+              },
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Hello, $_name'),
+                      );
+                    });
+              },
+              child: Text('Submit'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+~~~
+
+Ketika menggunakan controller, pastikan untuk menghapus controller ketika halaman atau widget sudah tidak digunakan. Ini bertujuan supaya tidak menimbulkan kebocoran memori (memory leak).
+
+~~~
+class _FirstScreenState extends State<FirstScreen> {
+  TextEditingController _controller = TextEditingController();
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                hintText: 'Write your name here...',
+                labelText: 'Your Name',
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Hello, ${_controller.text}'),
+                      );
+                    });
+              },
+              child: Text('Submit'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+ 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+~~~
+
+### [Switch](https://api.flutter.dev/flutter/material/Switch-class.html)
+
+Switch merupakan inputan yang mengembalikan nilai boolean true atau false.
+
+~~~
+class _FirstScreenState extends State<FirstScreen> {
+  bool lightOn = false;
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Switch(
+        value: lightOn,
+        onChanged: (bool value) {
+          setState(() {
+            lightOn = value;
+          });
+ 
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(lightOn ? 'Light On' : 'Light Off'),
+              duration: Duration(seconds: 1),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+~~~
+
+### [Radio](https://api.flutter.dev/flutter/material/Radio-class.html)
+
+Radio merupakan inputan yang digunakan untuk memilih salah satu dari beberapa pilihan dalam suatu kelompok.
+
+~~~
+class _FirstScreenState extends State<FirstScreen> {
+  String language;
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            leading: Radio<String>(
+              value: 'Dart',
+              groupValue: language,
+              onChanged: (String value) {
+                setState(() {
+                  language = value;
+                  showSnackbar();
+                });
+              },
+            ),
+            title: Text('Dart'),
+          ),
+          ListTile(
+            leading: Radio<String>(
+              value: 'Kotlin',
+              groupValue: language,
+              onChanged: (String value) {
+                setState(() {
+                  language = value;
+                  showSnackbar();
+                });
+              },
+            ),
+            title: Text('Kotlin'),
+          ),
+          ListTile(
+            leading: Radio<String>(
+              value: 'Swift',
+              groupValue: language,
+              onChanged: (String value) {
+                setState(() {
+                  language = value;
+                  showSnackbar();
+                });
+              },
+            ),
+            title: Text('Swift'),
+          ),
+        ],
+      ),
+    );
+  }
+ 
+  void showSnackbar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$language selected'),
+        duration: Duration(seconds: 1),
+      ),
+    );
+  }
+}
+~~~
+
+Pada contoh tersebut terdapat variable **language** yang digunakan pada **groupValue** tiap Radio. **Language** inilah yang menyimpan nilai **Radio** yang dipilih. Nilainya akan berubah ketika fungsi **onChanged** terpanggil.
+
+## [Checkbox](https://api.flutter.dev/flutter/material/Checkbox-class.html)
+
+Checkbox merupakan inputan benar atau salah. Checkbox akan berisi centang jika nilainya adalah benar dan kosong jika salah.
+
+~~~
+class _FirstScreenState extends State<FirstScreen> {
+  bool agree = false;
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: ListTile(
+        leading: Checkbox(
+          value: agree,
+          onChanged: (bool value) {
+            setState(() {
+              agree = value;
+            });
+          },
+        ),
+        title: Text('Agree / Disagree'),
+      ),
+    );
+  }
+}
+~~~
+
+## [Image](https://api.flutter.dev/flutter/widgets/Image-class.html)
+
+### Image.network
+
+Untuk menampilkan gambar yang bersumber dari internet, kita akan menggunakan method **Image.network**.
+
+~~~
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Center(
+        child: Image.network(
+          'https://picsum.photos/200/300',
+          width: 200,
+          height: 200,
+        ),
+      ),
+    );
+  }
+}
+~~~
+
+Pada kode di atas kita panggil method Image.network dengan url https://picsum.photos/200/300 lalu beri width dan height masing-masing 200.
+
+### Image.asset
+
+Kita juga dapat menampilkan gambar yang bersumber dari asset project. Asset di sini berupa gambar-gambar yang nantinya didaftarkan pada project. Untuk mendaftarkan asset gambar pada project kita harus menambahkannya pada berkas **pubspec.yaml**.
+
+Flutter mendukung beberapa jenis format gambar, seperti JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP, dan WBMP.
+
+Di luar format tersebut, Flutter akan memanfaatkan API dari masing-masing platform.
+
+Kita dapat menambahkan folder **images/** pada folder project, sebagai tempat untuk asset.
+
+![](https://d17ivq9b7rppb3.cloudfront.net/original/academy/20210425141500f20e24ccaaaaeb832eb7c2e089b8ad4b.jpeg)
+
+Masukkan berkas gambar yang ingin Anda gunakan ke dalam folder **image**. Sebagai contoh kita menggunakan gambar bernama **android.png**.
+
+Setelah menambahkan gambar pada project, saatnya kita mendaftarkan gambar tersebut pada **pubspec.yaml**.
+
+~~~
+...
+flutter:
+  uses-material-design: true
+ 
+  assets:
+    - images/android.png
+...
+~~~
+
+Hapus juga tanda pagar (**#**) atau komentar yang tidak diperlukan. Perhatikan pula indentasi kodenya. **assets:** berada sejajar dengan **uses-material-design:** yaitu berjarak **2 spasi** dari ujung dan berada di dalam **flutter:** sedangkan **- images/android.png** berada di dalam **assets:** dan berjarak **4 spasi** dari ujung.
+
+Apabila ada banyak gambar yang kita masukkan ke dalam lokasi folder, dibandingkan menuliskan lokasi gambar satu per satu, kita bisa langsung menuliskan folder **images/**.
+
+~~~
+class FirstScreen extends StatelessWidget {
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white,),
+        ),
+        title: Text('First Screen'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white,),
+          )
+        ],
+      ),
+      body: Center(
+        child: Image.asset('images/android.png', width: 200, height: 200),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+~~~
+
+## Font
+
+### Menambahkan Font ke Project
+
+Kita akan membuat folder fonts pada project kita, dan masukkan file-file font yang akan kita pakai.
+
+![](https://d17ivq9b7rppb3.cloudfront.net/original/academy/20200615194557c0f63961b549064c8aa1bcde62857d41.jpeg)
+
+### Mendaftarkan Font di pubspec.yaml
+
+~~~
+flutter:
+ 
+  uses-material-design: true
+  assets:
+    - images/
+ 
+  fonts:
+    - family: Oswald
+      fonts:
+       - asset: fonts/Oswald/Oswald-Regular.ttf
+~~~
+
+Sama halnya dengan gambar, font ada dalam bagian flutter. Untuk mendaftarkan font, kita membuat bagian fonts yang ada dalam blok flutter.
+
+Untuk mendaftarkan font Oswald kita tuliskan Oswald pada bagian family yang nantinya akan menjadi nama font yang kita panggil pada kode dart. 
+
+Lalu dalam family kita masukkan fonts yang di dalamnya terdapat asset yang nanti akan mengarah pada file font.ttf. Contoh di atas kita menambahkan asset **fonts/oswald/Oswald-Regular.ttf**.
+
+### Menggunakan Font pada Kode
+
+~~~
+Text('Custom Font', style: TextStyle(fontFamily: 'Oswald', fontSize: 30,),)
+~~~
+
+>NOTE: Setelah kita menambahkan **package** atau pun **asset** ke dalam **pubspec.yaml** kita perlu melakukan **full restart** agar asset yang baru dapat digunakan dalam aplikasi.
+
+### Mengubah Font Default
+
+Selain kita dapat mengubah font family pada satu per satu widget Text, kita dapat membuat font yang kita daftarkan menjadi default. Caranya dengan menambahkan parameter fontFamily pada kelas ThemeData yang ada pada parameter theme di MaterialApp.
+
+~~~
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        fontFamily: 'Oswald',
+        primarySwatch: Colors.blue,
+      ),
+      home: FirstScreen(),
+    );
+  }
+}
+~~~
