@@ -990,3 +990,109 @@ class MyApp extends StatelessWidget {
   }
 }
 ~~~
+
+## [ListView](https://api.flutter.dev/flutter/widgets/ListView-class.html)
+
+Widget ini digunakan untuk menampilkan beberapa item dalam bentuk baris atau kolom dan bisa di-scroll.
+
+Cara penggunaan **ListView** ini mirip dengan **Column** atau **Row** di mana Anda memasukkan **widget** yang ingin disusun sebagai **children** dari **ListView**.
+
+### Menampilkan Item Secara Dinamis
+
+Selain memasukkan widget satu per satu ke dalam children dari ListView, Anda juga dapat menampilkan list secara dinamis.
+
+Misalnya kita ingin menampilkan daftar angka dari 1 sampai 10. Caranya, masukkan variabel atau list Anda sebagai children lalu panggil fungsi **map()**. 
+
+Fungsi **map** ini berguna untuk memetakan atau mengubah setiap item di dalam list menjadi objek yang kita inginkan. 
+
+Karena parameter **children** ini membutuhkan nilai berupa list widget, maka kita perlu mengembalikan setiap item dari numberList menjadi widget yang akan ditampilkan. 
+
+~~~
+class ScrollingScreen extends StatelessWidget {
+  final List<int> numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: numberList.map((number) {
+          return Container(
+            height: 250,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              border: Border.all(color: Colors.black),
+            ),
+            child: Center(
+              child: Text(
+                '$number', // Ditampilkan sesuai item
+                style: TextStyle(fontSize: 50),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+}
+~~~
+
+Perhatikan di akhir kita perlu mengembalikan fungsi map menjadi objek List lagi dengan fungsi **.toList()**.
+
+### Menggunakan ListView.builder
+
+Selain mengisi parameter **children** dari **ListView** seperti sebelumnya, kita juga bisa memanfaatkan method **ListView.builder**.
+
+**ListView.builder** lebih cocok digunakan pada **ListView** dengan jumlah item yang cukup besar. Ini karena Flutter hanya akan merender tampilan item yang terlihat di layar dan tidak me-render seluruh item **ListView** di awal.
+
+**ListView.builder** memerlukan dua parameter yaitu **itemBuilder** dan **itemCount**. Parameter **itemBuilder** merupakan fungsi yang mengembalikan widget untuk ditampilkan. Sedangkan itemCount kita isi dengan jumlah seluruh item yang ingin ditampilkan.
+
+~~~
+ListView.builder(
+  itemBuilder: (BuildContext context, int index) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        border: Border.all(color: Colors.black),
+      ),
+      child: Center(
+        child: Text(
+          '${numberList[index]}',
+          style: TextStyle(fontSize: 50),
+        ),
+      ),
+    );
+  },
+  itemCount: numberList.length,
+)
+~~~
+
+### ListView.separated
+
+Cara lain untuk membuat **ListView** adalah dengan metode **ListView.separated**.
+
+ListView jenis ini akan menampilkan daftar item yang dipisahkan dengan **separator**. Penggunaan **ListView.separated** mirip dengan **builder**, yang membedakan adalah terdapat satu parameter tambahan wajib yaitu **separatorBuilder** yang mengembalikan Widget yang akan berperan sebagai **separator**.
+
+~~~
+ListView.separated(
+  itemBuilder: (BuildContext context, int index) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        border: Border.all(color: Colors.black),
+      ),
+      child: Center(
+        child: Text(
+          '${numberList[index]}',
+          style: TextStyle(fontSize: 50),
+        ),
+      ),
+    );
+  },
+  separatorBuilder: (BuildContext context, int index) {
+    return Divider();
+  },
+  itemCount: numberList.length,
+)
+~~~
