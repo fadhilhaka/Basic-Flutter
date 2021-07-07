@@ -1096,3 +1096,417 @@ ListView.separated(
   itemCount: numberList.length,
 )
 ~~~
+
+## Expanded & Flexible
+
+### [Expanded](https://api.flutter.dev/flutter/widgets/Expanded-class.html)
+
+Flutter memiliki widget Expanded yang dapat mengembangkan child dari Row atau Column sesuai dengan ruang yang tersedia.
+
+~~~
+class Rainbow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            color: Colors.red,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.orange,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.yellow,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.green,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.blue,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.indigo,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.purple,
+          ),
+        ),
+      ],
+    );
+  }
+}
+~~~
+
+Masing-masing container akan menempati ruang kosong yang ada. Jika Anda menjalankan di ukuran layar yang berbeda, maka ukuran container juga akan menyesuaikan.
+
+Expanded memiliki parameter flex yang memiliki nilai default 1. Anda dapat mengubah nilai flex ini sesuai perbandingan yang diinginkan. Misalnya Anda memberikan nilai flex 2 pada salah satu container.
+
+~~~
+Expanded(
+  flex: 2,
+  child: Container(
+    color: Colors.blue,
+  ),
+),
+~~~
+
+Maka container berwarna biru ini akan menjadi lebih besar dengan perbandingan 2/(1 + 1 + 1 + 1 + 2 + 1 + 1) atau 2/8 dari halaman.
+
+### [Flexible](https://api.flutter.dev/flutter/widgets/Flexible-class.html)
+
+Perbedaan Flexible dan Expanded adalah widget Flexible memungkinkan child widget-nya berukuran lebih kecil dibandingkan ukuran Flexible. 
+
+Sementara, child widget dari Expanded harus menempati ruang yang tersisa dari Column atau Row.
+
+~~~
+class ExpandedFlexiblePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ExpandedWidget(),
+                FlexibleWidget(),
+              ],
+            ),
+            Row(
+              children: [
+                ExpandedWidget(),
+                ExpandedWidget(),
+              ],
+            ),
+            Row(
+              children: [
+                FlexibleWidget(),
+                FlexibleWidget(),
+              ],
+            ),
+            Row(
+              children: [
+                FlexibleWidget(),
+                ExpandedWidget(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+ 
+class ExpandedWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.teal,
+          border: Border.all(color: Colors.white),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Expanded',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+ 
+class FlexibleWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.tealAccent,
+          border: Border.all(color: Colors.white),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Flexible',
+            style: TextStyle(
+              color: Colors.teal,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+~~~
+
+## [Navigation](https://flutter.dev/docs/cookbook/navigation)
+
+Dalam pemrograman Android kita mengenal Intent lalu pada pemrograman website terdapat tag untuk berpindah dari satu page ke page lain. 
+
+Pada Flutter kita akan menggunakan sebuah class bernama Navigator.
+
+Konsep navigasi pada Flutter mirip sekali dengan pemrograman Android, yakni bahwa ketika berpindah screen/activity akan menjadi tumpukan (stack).
+
+Ketika berpindah dari satu screen ke screen lain (push), maka screen pertama akan ditumpuk oleh screen kedua. Kemudian apabila kembali dari screen kedua ke pertama, maka screen kedua akan dihapus (pop).
+
+### Navigator.push
+
+Untuk berpindah ke screen kedua kita akan menggunakan sebuah method Navigator.push.
+
+~~~
+Navigator.push(context, MaterialPageRoute(builder: (context) {
+   return WidgetScreen();
+}));
+~~~
+
+Pada kode di atas Navigator.push memiliki dua parameter. Pertama ialah context dan yang kedua Route. 
+
+Parameter context ini merupakan variabel BuildContext yang ada pada method build.
+
+Parameter route berguna untuk menentukan tujuan ke mana kita akan berpindah screen. Route tersebut kita isikan dengan MaterialPageRoute yang di dalamnya terdapat builder yang nantinya akan diisi dengan tujuan screen-nya.
+
+~~~
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('Pindah Screen'),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return SecondScreen();
+            }));
+          },
+        ),
+      ),
+    );
+  }
+}
+~~~
+
+### Navigator.pop
+
+Setelah dapat berpindah ke screen lain untuk kembali ke screen sebelumnya, maka kita menggunakan Navigator.pop.
+
+~~~
+Navigator.pop(context)
+~~~
+
+Pada Navigator.pop kita hanya cukup menambahkan parameter context yang merupakan variabel dari method build.
+
+~~~
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Screen'),
+      ),
+      body: Center(
+        child: OutlinedButton(
+          child: Text('Kembali'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
+~~~
+
+### Mengirimkan Data Antar Halaman
+
+Pada Flutter kita memanfaatkan constructor dari sebuah class untuk mengirimkan data antar halaman.
+
+Sebagai contoh kita memiliki pesan yang akan dikirimkan dari First Screen menuju Second Screen.
+
+Untuk mengirimkan variabel message tersebut ke Second Screen, maka kita akan mengirimkannya sebagai parameter dari constructor kelas SecondScreen.
+
+~~~
+class SecondScreen extends StatelessWidget {
+  final String message;
+ 
+  SecondScreen(this.message);
+}
+~~~
+
+~~~
+Navigator.push(context,
+    MaterialPageRoute(builder: (context) => SecondScreen(message)));
+},
+~~~
+
+## Responsive Layout
+
+### MediaQuery
+
+MediaQuery adalah kelas yang dapat kita gunakan untuk mendapatkan ukuran dan juga orientasi layar.
+
+~~~
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
+ 
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Screen width: ${screenSize.width.toStringAsFixed(2)}',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            'Orientation: $orientation',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+~~~
+
+### LayoutBuilder
+
+Perbedaan umum antara MediaQuery dan Layout Builder adalah MediaQuery akan mengembalikan ukuran layar yang digunakan, sedangkan LayoutBuilder mengembalikan ukuran maksimum dari widget tertentu.
+
+~~~
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+ 
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: Row(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'MediaQuery: ${screenSize.width.toStringAsFixed(2)}',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'LayoutBuilder: ${constraints.maxWidth}',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Container(
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'MediaQuery: ${screenSize.width.toStringAsFixed(2)}',
+                        style: TextStyle(color: Colors.blueGrey, fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        'LayoutBuilder: ${constraints.maxWidth}',
+                        style: TextStyle(color: Colors.blueGrey, fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+~~~
+
+Dalam responsive design, terdapat breakpoint yang merupakan “titik” di mana layout akan beradaptasi untuk memberikan pengalaman pengguna sebaik mungkin.
+
+~~~
+class ResponsivePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          if (constraints.maxWidth < 600) {
+            return ListView(
+              children: _generateContainers(),
+            );
+          } else if (constraints.maxWidth < 900) {
+            return GridView.count(
+              crossAxisCount: 2,
+              children: _generateContainers(),
+            );
+          } else {
+            return GridView.count(
+              crossAxisCount: 6,
+              children: _generateContainers(),
+            );
+          }
+        },
+      ),
+    );
+  }
+ 
+  List<Widget> _generateContainers() {
+    return List<Widget>.generate(20, (index) {
+      return Container(
+        margin: const EdgeInsets.all(8),
+        color: Colors.blueGrey,
+        height: 200,
+      );
+    });
+  }
+}
+~~~
+
+![](https://d17ivq9b7rppb3.cloudfront.net/original/academy/20210425211022224c0de6d6751d5c57b5e4b7e39712a3.gif)
+
