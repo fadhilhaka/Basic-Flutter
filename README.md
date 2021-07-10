@@ -23,6 +23,7 @@
 | [Introduction](https://github.com/fadhilhaka/Basic-Flutter/tree/main/introduction) | Intro to Flutter |
 | [Fundamental](https://github.com/fadhilhaka/Basic-Flutter/tree/main/fundamental) | Flutter Fundamental |
 | [Widget](https://github.com/fadhilhaka/Basic-Flutter/tree/main/widget) | Flutter Widget |
+| [Deploytment](https://github.com/fadhilhaka/Basic-Flutter/tree/main/deploytment) | App Deploytment |
 
 ## Intention
 
