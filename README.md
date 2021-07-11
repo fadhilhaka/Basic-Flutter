@@ -24,6 +24,8 @@
 | [Fundamental](https://github.com/fadhilhaka/Basic-Flutter/tree/main/fundamental) | Flutter Fundamental |
 | [Widget](https://github.com/fadhilhaka/Basic-Flutter/tree/main/widget) | Flutter Widget |
 | [Deploytment](https://github.com/fadhilhaka/Basic-Flutter/tree/main/deploytment) | App Deploytment |
+| [Simple App](https://github.com/fadhilhaka/Basic-Flutter/tree/main/codelab) | Aplikasi Tempat Wisata Bandung |
+| [Challenge App](https://github.com/fadhilhaka/Basic-Flutter/tree/main/submission) | Aplikasi Pencatatan Keuangan |
 
 ## Intention
 
