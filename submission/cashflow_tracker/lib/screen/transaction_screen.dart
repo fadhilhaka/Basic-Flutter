@@ -22,6 +22,7 @@ class TransactionScreen extends StatelessWidget {
             child: TextButton(
               child: Text(
                 'Cancel',
+                textScaleFactor: 1.0,
                 style: TextStyle(color: Colors.white, fontSize: 14.0),
               ),
               onPressed: () {
@@ -35,6 +36,7 @@ class TransactionScreen extends StatelessWidget {
           TextButton(
             child: Text(
               'Save',
+              textScaleFactor: 1.0,
               style: TextStyle(color: Colors.white, fontSize: 14.0),
             ),
             onPressed: () {

@@ -1,9 +1,21 @@
-import 'package:flutter/cupertino.dart';
+import 'package:hive/hive.dart';
 
-class Expense {
+part 'expense.g.dart';
+
+const int ExpenseHiveID = 0;
+
+@HiveType(typeId: ExpenseHiveID)
+class Expense extends HiveObject {
+  @HiveField(0)
   int id;
+
+  @HiveField(1)
   String amount;
+
+  @HiveField(2)
   String category;
+
+  @HiveField(3)
   String date;
 
   Expense({
